@@ -1,0 +1,7 @@
+{
+    "phpVersion" : "8.0",
+    "tabWidth": 4,
+    "singleQuote": false,
+    "braceStyle": "1tbs",
+    "printWidth":100
+}
