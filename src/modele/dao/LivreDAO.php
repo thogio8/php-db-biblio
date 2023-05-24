@@ -36,17 +36,22 @@ class LivreDAO {
         return $this->toObject($livreDB);
     }
 
-    public function findByAuteur(string $nomAuteur) : ?Livre{
+    public function findByAuteur(string $nomAuteur) : ?array{
         $connexion = Database::getConnection();
         $requeteSQL = "SELECT l.*, a.* FROM livre l INNER JOIN auteur a on l.idAuteur = a.idAuteur WHERE a.nomAuteur = :nomAuteur";
         $requete = $connexion->prepare($requeteSQL);
         $requete->bindValue(":nomAuteur", $nomAuteur);
         $requete->execute();
-        $livreDB = $requete->fetch(PDO::FETCH_ASSOC);
-        if($livreDB === false){
+        $livresDB = $requete->fetchAll(PDO::FETCH_ASSOC);
+        if($livresDB === false){
             return null;
         }
-        return $this->toObject($livreDB);
+        $livres = [];
+        foreach($livresDB as $livreDB){
+            $livre = $this->toObject($livreDB);
+            $livres[] = $livre;
+        }
+        return $livres;
     }
 
     public function create(Livre $livre) : void {

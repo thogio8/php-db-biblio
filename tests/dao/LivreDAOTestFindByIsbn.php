@@ -6,13 +6,13 @@ $livreDAO = new LivreDAO();
 
 $livre = $livreDAO->findByIsbn("148-63-956");
 if($livre != null){
-    echo  $livre->getIsbn() . " " .
-        $livre->getTitre()." ".
-        $livre->getDateParution()->format("d/m/Y")." " .
-        $livre->getNbPages()." ".
-        $livre->getAuteur()->getIdAuteur()." ".
-        $livre->getAuteur()->getPrenom()." " .
-        $livre->getAuteur()->getNom();
+    echo  "ISBN : ".$livre->getIsbn() . " " .
+        "Titre : ".$livre->getTitre()." ".
+        "Date de parution : ".$livre->getDateParution()->format("d/m/Y")." " .
+        "Nombre de pages : ".$livre->getNbPages()." ".
+        "ID auteur : ".$livre->getAuteur()->getIdAuteur()." ".
+        "Prenom auteur : ".$livre->getAuteur()->getPrenom()." " .
+        "Nom auteur : ".$livre->getAuteur()->getNom().PHP_EOL;
 }else{
     echo "Le livre n'existe pas.";
 }

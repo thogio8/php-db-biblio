@@ -2,14 +2,14 @@
 
 require_once "./src/modele/dao/LivreDAO.php";
 
-class RechercherLivreParISBN{
+class RechercherLivreParNomAuteur{
     private LivreDAO $livreDAO;
 
     public function __construct(){
         $this->livreDAO = new LivreDAO();
     }
 
-    public function execute(string $isbn) : ?Livre{
-        return $this->livreDAO->findByIsbn($isbn);
+    public function execute(string $nom) : ?array{
+        return $this->livreDAO->findByAuteur("Maire");
     }
 }
