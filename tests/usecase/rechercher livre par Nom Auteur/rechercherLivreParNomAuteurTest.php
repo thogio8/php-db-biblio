@@ -4,7 +4,7 @@ require_once "./src/modele/usecase/rechercher livre par Nom Auteur/RechercherLiv
 
 $rechercherLivreParNomAuteur = new RechercherLivreParNomAuteur();
 
-$nomAuteur = "Lamy";
+$nomAuteur = "l";
 
 $livres = $rechercherLivreParNomAuteur->execute($nomAuteur);
 

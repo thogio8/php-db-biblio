@@ -38,7 +38,7 @@ class LivreDAO {
 
     public function findByAuteur(string $nomAuteur) : ?array{
         $connexion = Database::getConnection();
-        $requeteSQL = "SELECT l.*, a.* FROM livre l INNER JOIN auteur a on l.idAuteur = a.idAuteur WHERE a.nomAuteur = :nomAuteur";
+        $requeteSQL = "SELECT l.*, a.* FROM livre l INNER JOIN auteur a on l.idAuteur = a.idAuteur WHERE a.nomAuteur LIKE CONCAT('%',:nomAuteur,'%')";
         $requete = $connexion->prepare($requeteSQL);
         $requete->bindValue(":nomAuteur", $nomAuteur);
         $requete->execute();
