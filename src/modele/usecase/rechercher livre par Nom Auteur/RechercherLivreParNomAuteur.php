@@ -10,6 +10,6 @@ class RechercherLivreParNomAuteur{
     }
 
     public function execute(string $nom) : ?array{
-        return $this->livreDAO->findByAuteur("Maire");
+        return $this->livreDAO->findByAuteur($nom);
     }
 }

@@ -4,7 +4,7 @@ require_once "./src/modele/dao/LivreDAO.php";
 
 $livreDAO = new LivreDAO();
 
-$livres = $livreDAO->findByAuteur("Maire");
+$livres = $livreDAO->findByAuteur("Mai");
 if($livres != null){
      foreach ($livres as $livre){
          echo  "ISBN : ".$livre->getIsbn()."\t" .
