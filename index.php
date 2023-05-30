@@ -57,7 +57,8 @@ $livres = $afficherLivre->execute();
         <ul>
             <?php
             foreach ($livres as $livre){ ?>
-                <li><?= "ISBN : {$livre->getIsbn()} \t Titre : {$livre->getTitre()}\t Auteur : {$livre->getAuteur()->getNom()} {$livre->getAuteur()->getPrenom()} \t Nombre de pages : {$livre->getNbPages()} \n" ?></li>
+                <li><?= "ISBN : {$livre->getIsbn()} \t Titre : {$livre->getTitre()}\t Auteur : {$livre->getAuteur()->getNom()} {$livre->getAuteur()->getPrenom()} \t Nombre de pages : {$livre->getNbPages()} \n" ?>
+                    <a href="detail.php/?i">En savoir plus</a></li>
             <?php }
             ?>
         </ul>
