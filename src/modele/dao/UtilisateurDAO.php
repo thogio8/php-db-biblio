@@ -10,10 +10,23 @@ class UtilisateurDAO{
         $requete = $connexion->prepare($requeteSQL);
         $requete->bindValue(":id", $id);
         $requete->execute();
-        $auteurDB = $requete->fetch(PDO::FETCH_ASSOC);
-        if($auteurDB === false){
+        $utilisateurDB = $requete->fetch(PDO::FETCH_ASSOC);
+        if($utilisateurDB === false){
             return null;
         }
-        return $this->toObject($auteurDB);
+        return $this->toObject($utilisateurDB);
+    }
+
+    /**
+     * @param mixed $utilisateurDB
+     * @return Utilisateur
+     */
+    private function toObject(mixed $utilisateurDB): Utilisateur
+    {
+        $utilisateur = new Utilisateur();
+        $utilisateur->setId($utilisateurDB["idUtilisateur"]);
+        $utilisateur->setNom($utilisateurDB["nomUtilisateur"]);
+        $utilisateur->setPrenom($utilisateurDB["prenomUtilisateur"]);
+        return $utilisateur;
     }
 }

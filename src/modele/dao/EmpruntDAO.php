@@ -6,12 +6,12 @@ require_once "./src/modele/config/Database.php";
 class EmpruntDAO
 {
     /**
-     * @return Livre[]
+     * @return Emprunt[]
      */
     public function findAll(): array
     {
         $connexion = Database::getConnection();
-        $requeteSQL = "SELECT * FROM emprunt";
+        $requeteSQL = "SELECT e.* FROM emprunt e, utilisateur u, livre l WHERE e.idUtilisateur = u.idUtilisateur AND e.isbn = l.isbn";
         $requete = $connexion->prepare($requeteSQL);
         $requete->execute();
         $empruntsDB = $requete->fetchAll(PDO::FETCH_ASSOC);
@@ -91,7 +91,7 @@ class EmpruntDAO
 
     /**
      * @param mixed $empruntDB
-     * @return Auteur
+     * @return Emprunt
      */
     private function toObject(mixed $empruntDB): Emprunt
     {

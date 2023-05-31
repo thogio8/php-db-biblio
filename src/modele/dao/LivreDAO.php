@@ -88,7 +88,7 @@ class LivreDAO {
 
     /**
      * @param mixed $livreDB
-     * @return Auteur
+     * @return Livre
      */
     private function toObject(mixed $livreDB): Livre
     {
