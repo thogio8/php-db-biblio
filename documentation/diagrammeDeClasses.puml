@@ -1,3 +1,30 @@
 @startuml
 
+class Livre{
+    -isbn : chaine
+    -titre : chaine
+    -nbPages : entier
+    -dateParution : Date
+}
+
+class Auteur{
+    -nom : chaine
+    -prénom : chaine
+}
+
+class Utilisateur{
+    -id : entier
+    -nom : chaine
+    -prenom : chaine
+}
+
+class Emprunt{
+    -idEmprunt : entier
+    -dateEmprunt : date
+}
+
+Livre "0..  *   " --> "1..1  " Auteur : est écrit par >
+Livre "1..1 " <-- "0..*  " Emprunt : est emprunté >
+Emprunt "0..*  " --> "1..1   " Utilisateur : est emprunté par >
+
 @enduml

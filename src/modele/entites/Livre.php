@@ -1,6 +1,8 @@
 <?php
 
-require_once "Auteur.php";
+require_once "./src/modele/entites/Auteur.php";
+require_once "./src/modele/entites/Emprunt.php";
+
 
 class Livre
 {
@@ -9,6 +11,7 @@ class Livre
     private DateTime $dateParution;
     private int $nbPages;
     private Auteur $auteur;
+    private Emprunt $emprunte;
 
     public function __construct()
     {
