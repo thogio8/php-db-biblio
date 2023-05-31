@@ -7,5 +7,5 @@ $auteurDAO = new AuteurDAO();
 $auteurs = $auteurDAO->findAll();
 
 foreach ($auteurs as $auteur){
-    echo $auteur->getPrenom() . " " .$auteur->getNom().PHP_EOL;
+    echo $auteur->getPrenom() . " AuteurDAOTestFindAll.php" .$auteur->getNom().PHP_EOL;
 }

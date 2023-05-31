@@ -21,6 +21,7 @@ class Utilisateur{
 class Emprunt{
     -idEmprunt : entier
     -dateEmprunt : date
+    -dateRetour : date
 }
 
 Livre "0..  *   " --> "1..1  " Auteur : est écrit par >

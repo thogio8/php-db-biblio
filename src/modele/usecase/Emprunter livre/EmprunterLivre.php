@@ -8,6 +8,7 @@ require_once "./src/modele/entites/Utilisateur.php";
 require_once "./src/modele/entites/Emprunt.php";
 require_once "./src/modele/usecase/Emprunter livre/EmprunterLivreReponse.php";
 require_once "./src/modele/usecase/Emprunter livre/EmprunterLivreStatut.php";
+require_once "./src/modele/usecase/Emprunter livre/EmprunterLivreRequete.php";
 
 class EmprunterLivre{
     private LivreDAO $livreDAO;
@@ -26,12 +27,16 @@ class EmprunterLivre{
         if($livre == null){
             return new EmprunterLivreReponse(EmprunterLivreStatut::LIVRE_INEXISTANT, "Le livre n'existe pas.");
         }
+
         // 2. Vérifier si l'utilisateur existe
         $utilisateur = $this->utilisateurDAO->findById($requete->idUtilisateur);
         if($utilisateur == null){
             return new EmprunterLivreReponse(EmprunterLivreStatut::UTILISATEUR_INEXISTANT, "L'utilisateur n'existe pas.");
         }
-        // 3. Créer l'emprunt
+
+        // 3. Vérifier si le livre n'est pas déjà emprunté
+
+        // 4. Créer l'emprunt
         $emprunt = new Emprunt();
         $emprunt->setLivre($livre);
         $emprunt->setUtilisateur($utilisateur);

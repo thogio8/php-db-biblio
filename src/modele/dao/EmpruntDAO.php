@@ -55,41 +55,37 @@ class EmpruntDAO
             $emprunt = $this->toObject($empruntDB);
             $emprunts[] = $emprunt;
         }
-        return $livres;
+        return $emprunts;
     }
 
-    public function create(Livre $livre): void
+    public function create(Emprunt $emprunt): void
     {
         $connexion = Database::getConnection();
-        $requeteSQL = "INSERT INTO livre VALUES (:isbn, :titre, :dateParution, :nbPages, :idAuteur)";
+        $requeteSQL = "INSERT INTO emprunt(dateEmprunt, isbn, idUtilisateur) VALUES (:dateEmprunt, :isbn, :idUtilisateur)";
         $requete = $connexion->prepare($requeteSQL);
-        $requete->bindValue(":isbn", $livre->getIsbn());
-        $requete->bindValue(":titre", $livre->getTitre());
-        $requete->bindValue(":dateParution", $livre->getDateParution()->format("Y-m-d"));
-        $requete->bindValue(":nbPages", $livre->getNbPages());
-        $requete->bindValue(":idAuteur", $livre->getAuteur()->getIdAuteur());
+        $requete->bindValue(":dateEmprunt", $emprunt->getDateEmprunt()->format("Y-m-d"));
+        $requete->bindValue(":isbn", $emprunt->getLivre()->getIsbn());
+        $requete->bindValue(":idUtilisateur", $emprunt->getUtilisateur()->getId());
         $requete->execute();
     }
 
-    public function delete(string $isbn): void
+    public function delete(string $idEmprunt): void
     {
         $connexion = Database::getConnection();
-        $requeteSQL = "DELETE FROM livre WHERE isbn = :isbn";
+        $requeteSQL = "DELETE FROM emprunt WHERE idEmprunt = :idEmprunt";
         $requete = $connexion->prepare($requeteSQL);
-        $requete->bindValue(":isbn", $isbn);
+        $requete->bindValue(":idEmprunt", $idEmprunt);
         $requete->execute();
     }
 
-    public function update(Livre $livre): void
+    public function update(Emprunt $emprunt): void
     {
         $connexion = Database::getConnection();
-        $requeteSQL = "UPDATE livre SET titre = :titre, dateParution = :dateParution, nbPages = :nbPages, idAuteur = :idAuteur WHERE isbn = :isbn";
+        $requeteSQL = "UPDATE emprunt SET dateEmprunt = :dateEmprunt, isbn = :isbn, idUtilisateur = :idUtilisateur WHERE idEmprunt = :idEmprunt";
         $requete = $connexion->prepare($requeteSQL);
-        $requete->bindValue(":isbn", $livre->getIsbn());
-        $requete->bindValue(":titre", $livre->getTitre());
-        $requete->bindValue(":nbPages", $livre->getNbPages());
-        $requete->bindValue(":dateParution", $livre->getDateParution()->format("Y-m-d"));
-        $requete->bindValue(":idAuteur", $livre->getAuteur()->getIdAuteur());
+        $requete->bindValue(":dateParution", $emprunt->getDateEmprunt()->format("Y-m-d"));
+        $requete->bindValue(":isbn", $emprunt->getLivre()->getIsbn());
+        $requete->bindValue(":idUtilisateur", $emprunt->getUtilisateur()->getId());
         $requete->execute();
     }
 
@@ -110,7 +106,6 @@ class EmpruntDAO
         $livre->setDateParution(DateTime::createFromFormat("Y-m-d", $empruntDB["dateParution"]));
         $livre->setNbPages($empruntDB["nbPages"]);
         $livre->setAuteur($auteur);
-        return $livre;
 
         $utilisateur = new Utilisateur();
         $utilisateur->setId($empruntDB["idUtilisateur"]);
