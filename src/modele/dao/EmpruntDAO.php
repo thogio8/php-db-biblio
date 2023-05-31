@@ -26,8 +26,11 @@ class EmpruntDAO
     }
 
 
-//
-    public function findByIsbn(string $isbn): ?array
+    /**
+     * @param string $isbn
+     * @return Emprunt[]
+     */
+    public function findByIsbn(string $isbn): array
     {
         $connexion = Database::getConnection();
         $requeteSQL = "SELECT * FROM emprunt e, utilisateur u, auteur a, livre l WHERE e.isbn = :isbn AND e.isbn = l.isbn AND l.idAuteur = a.idAuteur AND e.idUtilisateur = u.idUtilisateur";

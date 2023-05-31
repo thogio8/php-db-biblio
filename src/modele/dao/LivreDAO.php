@@ -30,7 +30,6 @@ class LivreDAO {
         $requete->bindValue(":isbn", $isbn);
         $requete->execute();
         $livreDB = $requete->fetch(PDO::FETCH_ASSOC);
-        print_r($livreDB);
         if($livreDB === false){
             return null;
         }

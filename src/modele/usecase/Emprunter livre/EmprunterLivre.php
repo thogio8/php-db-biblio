@@ -35,6 +35,12 @@ class EmprunterLivre{
         }
 
         // 3. Vérifier si le livre n'est pas déjà emprunté
+        $emprunts = $this->empruntDAO->findByIsbn($requete->isbn);
+        foreach($emprunts as $emprunt){
+            if($emprunt->getDateRetour() == null){
+                return new EmprunterLivreReponse(EmprunterLivreStatut::LIVRE_DEJA_EMPRUNTE, "Le livre est déjà emprunté.");
+            }
+        }
 
         // 4. Créer l'emprunt
         $emprunt = new Emprunt();
