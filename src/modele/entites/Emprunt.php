@@ -5,6 +5,7 @@ require_once "./src/modele/entites/Livre.php";
 class Emprunt{
     private int $idEmprunt;
     private DateTime $dateEmprunt;
+    private DateTime $dateRetour;
     private Utilisateur $utilisateur;
     private Livre $livre;
 
@@ -75,6 +76,23 @@ class Emprunt{
     {
         $this->livre = $livre;
     }
+
+    /**
+     * @return DateTime
+     */
+    public function getDateRetour(): DateTime
+    {
+        return $this->dateRetour;
+    }
+
+    /**
+     * @param DateTime $dateRetour
+     */
+    public function setDateRetour(DateTime $dateRetour): void
+    {
+        $this->dateRetour = $dateRetour;
+    }
+
 
 
 }

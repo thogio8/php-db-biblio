@@ -14,6 +14,7 @@ $utilisateur = $utilisateurDAO->findById(2);
 
 $emprunt = new Emprunt();
 $emprunt->setDateEmprunt(new DateTime());
+$emprunt->setDateRetour(DateTime::createFromFormat("d/m/Y", "31/07/2023"));
 $emprunt->setUtilisateur($utilisateur);
 $emprunt->setLivre($livre);
 
